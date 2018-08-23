@@ -21,21 +21,20 @@ public class CopyConstructor {
      * @param src
      */
     public CopyConstructor(CopyConstructor src) throws CloneNotSupportedException {
-        CopyConstructor dest = new CopyConstructor();
-        dest.ints = src.ints.clone();
+        this.ints = src.ints.clone();
 
         for (int i = 0; i < src.ints_myint.length; i++) {
-            dest.ints_myint[i] = src.ints_myint[i].clone();
+            this.ints_myint[i] = src.ints_myint[i].clone();
         }
 
         // 这个需要根据数组的多维展开，所以这样其实并不好,如果是三维数组，就要嵌套循环
         for (int i = 0; i < src.ints_2.length; i++) {
-            dest.ints_2[i] = src.ints_2[i].clone();
+            this.ints_2[i] = src.ints_2[i].clone();
         }
 
         for (int i = 0; i < src.ints_myint_2.length; i++) {
             for (int j = 0; j < src.ints_myint_2[i].length; j++) {
-                dest.ints_myint_2[i][j] = src.ints_myint_2[i][j].clone();
+                this.ints_myint_2[i][j] = src.ints_myint_2[i][j].clone();
             }
         }
     }
