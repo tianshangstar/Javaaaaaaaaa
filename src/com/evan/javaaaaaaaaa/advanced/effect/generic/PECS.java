@@ -1,6 +1,7 @@
 package com.evan.javaaaaaaaaa.advanced.effect.generic;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -11,6 +12,26 @@ import java.util.List;
  * 源自《Effective Java》 ----- 利用有限制通配符表示来提升API的灵活性
  */
 public class PECS {
+
+    /**
+     * 一个关于PECS应用的例子。
+     *
+     * @param list
+     * @param <T>
+     * @return
+     */
+    public static <T extends Comparable<? super T>> T max(List<? extends T> list) {
+        Iterator<? extends T> i = list.iterator();
+        T result = i.next();
+        while (i.hasNext()) {
+            T t = i.next();
+            if (t.compareTo(result) > 0) {
+                result = t;
+            }
+        }
+
+        return result;
+    }
 
     public static class Stack<T> {
 
