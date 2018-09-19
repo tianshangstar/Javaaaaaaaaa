@@ -47,8 +47,9 @@ public class StringIntern {
         System.out.println("8 : " + (s15 == s16)); // 问题8
 
         String s17 = new String("2") + new String("2");
-        s17.intern();
-        String s18 = "22";
+        s17.intern(); // jdk1.7之后，常量池不仅仅可以存储对象，还可以存储对象的引用，会直接将s17的地址存储在常量池
+        String s18 = "22"; // jdk1.7之后，常量池中的地址其实就是s3的地址
+        // jdk1.7之前false， jdk1.7之后true
         System.out.println("9 : " + (s17 == s18)); // 问题9
     }
 }
