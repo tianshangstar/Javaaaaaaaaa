@@ -1,9 +1,6 @@
 package com.evan.javaaaaaaaaa.algorithm.leetcode;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by evan01.zhang on 2018/5/4.
@@ -21,13 +18,20 @@ import java.util.Set;
  */
 public class LongestSubstr {
     public static void main(String[] args) {
-        String target = "eraasdfffddsasdsasf";// should output 'asdf'
+        String target = "eraasdfaeddsasdsasf";// should output 'asdf'
         System.out.println(lengthOfLongestSubstring(target));
         System.out.println(lengthOfLongestSubstring1(target));
         System.out.println(lengthOfLongestSubstring2(target));
         System.out.println(lengthOfLongestSubstring3(target));
     }
 
+    /**
+     * 方法1：暴力强解，强行解除字符串的每一个符合
+     * 条件的子字符串并比较长度（我想到的也是这个办法）
+     *
+     * @param s
+     * @return
+     */
     public static int lengthOfLongestSubstring(String s) {
         int n = s.length();
         int ans = 0;
@@ -47,6 +51,12 @@ public class LongestSubstr {
         return true;
     }
 
+    /**
+     * 方法2:sliding window(滑动窗口)
+     *
+     * @param s
+     * @return
+     */
     public static int lengthOfLongestSubstring1(String s) {
         int n = s.length();
         Set<Character> set = new HashSet<>();
@@ -63,6 +73,12 @@ public class LongestSubstr {
         return ans;
     }
 
+    /**
+     * 方法3：优化滑动窗口
+     *
+     * @param s
+     * @return
+     */
     public static int lengthOfLongestSubstring2(String s) {
         int n = s.length(), ans = 0;
         Map<Character, Integer> map = new HashMap<>(); // current index of character
@@ -73,10 +89,23 @@ public class LongestSubstr {
             }
             ans = Math.max(ans, j - i + 1);
             map.put(s.charAt(j), j + 1);
+
+//            System.out.println("j = " + j + ", i = " + i + "; ans = " + ans
+//                    + ", charAt(j) = " + s.charAt(j)
+//                    + ", s[j, i] = " + ((j > i) ? s.subSequence(i, j + 1) : "")
+//                    + ", map = " + map
+//            );
         }
         return ans;
     }
 
+    /**
+     * 字符数组
+     * 和解法3同理，只是由字符数组替换掉map
+     *
+     * @param s
+     * @return
+     */
     public static int lengthOfLongestSubstring3(String s) {
         int n = s.length(), ans = 0;
         int[] index = new int[128]; // current index of character
@@ -85,6 +114,10 @@ public class LongestSubstr {
             i = Math.max(index[s.charAt(j)], i);
             ans = Math.max(ans, j - i + 1);
             index[s.charAt(j)] = j + 1;
+            System.out.println("j = " + j + ", i = " + i + "; ans = " + ans
+                    + ", charAt(j) = " + s.charAt(j)
+                    + ", s[j, i] = " + ((j > i) ? s.subSequence(i, j + 1) : "")
+            );
         }
         return ans;
     }
