@@ -4,9 +4,11 @@ import java.util.Arrays;
 
 /**
  * Created by evan01.zhang on 2018/11/23.
+ * 复杂度 O(n²) 最优 O(n)
  */
 public class InsertSort {
     public static void sort(int[] arr) {
+        // 以arr[0]为锚，遍历每一个
         for (int i = 1; i < arr.length; i++) {
             // 选择排序过的下一个元素，反向遍历
             for (int j = i; j > 0 && arr[j] > arr[j - 1]; j--) {
