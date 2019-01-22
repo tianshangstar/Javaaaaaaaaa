@@ -2,14 +2,13 @@ package com.evan.javaaaaaaaaa.advanced.rmi.server;
 
 import com.evan.javaaaaaaaaa.advanced.rmi.MyRmiClientFactory;
 
-import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class ServerStartup {
     public static void main(String[] args) throws
-            RemoteException, AlreadyBoundException {
+            RemoteException {
         // 服务ip
         String serverIp = "10.107.123.88";
         // 服务端口
@@ -23,12 +22,12 @@ public class ServerStartup {
         // 绑定对象
         registry.rebind("userHandler", userHandler);
 
-        while (true) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+//        while (true) {
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 }
