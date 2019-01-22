@@ -10,13 +10,13 @@ public class ServerStartup {
     public static void main(String[] args) throws
             RemoteException {
         // 服务ip
-        String serverIp = "10.107.123.88";
-        // 服务端口
-        int serverPort = 4545;
-
-        MyRmiClientFactory registerFactory = new MyRmiClientFactory(serverIp, serverPort);
+//        String serverIp = "10.107.123.88";
+//        // 服务端口
+//        int serverPort = 4545;
+//
+//        MyRmiClientFactory registerFactory = new MyRmiClientFactory(serverIp, serverPort);
         // 注册服务
-        Registry registry = LocateRegistry.createRegistry(serverPort, registerFactory, registerFactory);
+        Registry registry = LocateRegistry.createRegistry(4545);
 
         UserHandler userHandler = new UserHandlerImpl();
         // 绑定对象
