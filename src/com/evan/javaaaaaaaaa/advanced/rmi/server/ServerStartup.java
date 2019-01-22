@@ -15,15 +15,11 @@ public class ServerStartup {
         // 服务端口
         int serverPort = 4545;
 
-        int exportPort = 4546;
-
         MyRmiClientFactory registerFactory = new MyRmiClientFactory(serverIp, serverPort);
         // 注册服务
         Registry registry = LocateRegistry.createRegistry(serverPort, registerFactory, registerFactory);
 
-        MyRmiClientFactory exportFactory = new MyRmiClientFactory(serverIp, exportPort);
-
-        UserHandler userHandler = new UserHandlerImpl(exportPort, exportFactory, exportFactory);
+        UserHandler userHandler = new UserHandlerImpl();
         // 绑定对象
         registry.rebind("userHandler", userHandler);
 
