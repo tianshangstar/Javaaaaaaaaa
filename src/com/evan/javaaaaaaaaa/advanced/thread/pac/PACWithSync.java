@@ -10,6 +10,13 @@ public class PACWithSync {
     private final List<Good> goods = new ArrayList<>();
 
     class Producer implements Runnable {
+
+        private String name;
+
+        public Producer(String name) {
+            this.name = name;
+        }
+
         @Override
         public void run() {
             synchronized (goods) {
@@ -17,8 +24,8 @@ public class PACWithSync {
                     try {
                         Thread.sleep(1000);
                         goods.add(new Good());
-                        System.out.println(String.format("创建了一个商品，一共有%s个商品", goods.size()));
-                        goods.notify();
+                        System.out.println(String.format("%s --- 创建了一个商品，一共有%s个商品", name, goods.size()));
+                        goods.notifyAll();
                         goods.wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -30,6 +37,11 @@ public class PACWithSync {
 
 
     class Consumer implements Runnable {
+        private String name;
+
+        public Consumer(String name) {
+            this.name = name;
+        }
 
         @Override
         public void run() {
@@ -39,9 +51,9 @@ public class PACWithSync {
                         Thread.sleep(1000);
                         if (goods.size() > 0) {
                             goods.remove(goods.size() - 1);
-                            System.out.println(String.format("消费了一个商品，还有%s个商品", goods.size()));
+                            System.out.println(String.format("%s --- 消费了一个商品，还有%s个商品", name, goods.size()));
                         }
-                        goods.notify();
+                        goods.notifyAll();
                         goods.wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -51,19 +63,22 @@ public class PACWithSync {
         }
     }
 
-    private void startProducer() {
-        executor.execute(new Thread(new Producer()));
+    private void startProducer(String name) {
+        executor.execute(new Thread(new Producer(name)));
     }
 
-    private void startConsumer() {
-        executor.execute(new Thread(new Consumer()));
+    private void startConsumer(String name) {
+        executor.execute(new Thread(new Consumer(name)));
     }
 
-    private ExecutorService executor = Executors.newFixedThreadPool(2);
+    private ExecutorService executor = Executors.newFixedThreadPool(5);
 
     public static void main(String[] args) {
         PACWithSync pws = new PACWithSync();
-        pws.startProducer();
-        pws.startConsumer();
+        pws.startProducer("生产1");
+        pws.startProducer("生产2");
+        pws.startConsumer("消费1");
+        pws.startConsumer("消费2");
+        pws.startConsumer("消费3");
     }
 }
