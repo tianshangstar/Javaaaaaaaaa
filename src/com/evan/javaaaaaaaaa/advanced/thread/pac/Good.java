@@ -1,4 +1,6 @@
 package com.evan.javaaaaaaaaa.advanced.thread.pac;
 
-public class Good {
+import java.io.Serializable;
+
+public class Good implements Serializable {
 }
