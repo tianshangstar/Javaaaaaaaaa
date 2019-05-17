@@ -1,4 +1,4 @@
-package hotswap;
+package com.evan.javaaaaaaaaa.jvm.hotswap;
 
 public class Test {
     public static void main(String[] args) {

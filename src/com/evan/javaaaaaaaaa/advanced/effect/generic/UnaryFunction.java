@@ -1,7 +1,5 @@
 package com.evan.javaaaaaaaaa.advanced.effect.generic;
 
-import java.util.Map;
-
 /**
  * Created by evan01.zhang on 2018/9/3.
  * <p>
