@@ -1,4 +1,4 @@
-package com.evan.javaaaaaaaaa.algorithm.leetcode.simple.q_387;
+package com.evan.javaaaaaaaaa.algorithm.leetcode.simple.q_384;
 
 import java.util.Random;
 
