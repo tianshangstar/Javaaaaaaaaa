@@ -39,11 +39,11 @@ public class SocketClientNIO {
          * @see SelectionKey#OP_WRITE
          */
         private void init() {
-            try {
-                // 1. 初始化selector
-                Selector selector = Selector.open();
-                // 2. 初始化channel
-                SocketChannel socketChannel = SocketChannel.open();
+            try (// 1. 初始化selector
+                 Selector selector = Selector.open();
+                 // 2. 初始化channel
+                 SocketChannel socketChannel = SocketChannel.open()) {
+
                 socketChannel.configureBlocking(false);
 
                 // 3. selector注册channel
