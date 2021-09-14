@@ -6,6 +6,7 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.Selector;
+import java.util.Arrays;
 
 /**
  * nio是基于selector、channel、buffer的
@@ -35,13 +36,25 @@ public class FileNIO {
         // 缓冲
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
 
+        int currentLength = 0;
 
-        while (fileChannel.read(byteBuffer) != -1) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        fileChannel.write(byteBuffer);
+
+        while ((currentLength = fileChannel.read(byteBuffer)) != -1) {
             byteBuffer.flip();
+            byte[] bytes;
+            bytes = Arrays.copyOfRange(byteBuffer.array(), 0, currentLength);
 
-            System.err.println(new String(byteBuffer.array()));
+            stringBuilder.append(new String(bytes));
+
+            System.err.println(new String(bytes));
             byteBuffer.clear();
         }
+
+
+        System.err.println(stringBuilder.toString());
     }
 
 }
