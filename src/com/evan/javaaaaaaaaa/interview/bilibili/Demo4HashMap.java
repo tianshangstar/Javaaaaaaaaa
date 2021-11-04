@@ -1,4 +1,4 @@
-package com.evan.javaaaaaaaaa.algorithm.leetcode.bilibili;
+package com.evan.javaaaaaaaaa.interview.bilibili;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
