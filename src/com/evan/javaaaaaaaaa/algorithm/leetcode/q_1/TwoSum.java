@@ -1,4 +1,4 @@
-package com.evan.javaaaaaaaaa.algorithm.leetcode;
+package com.evan.javaaaaaaaaa.algorithm.leetcode.q_1;
 
 import java.util.HashMap;
 import java.util.Map;
