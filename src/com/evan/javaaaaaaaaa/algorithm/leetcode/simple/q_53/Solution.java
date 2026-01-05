@@ -25,9 +25,9 @@ public class Solution {
 
         int maxSubSum = nums[0];
         // 这里我本来初始化成Integer.MIN_VALUE，但是事实证明如果遇到第一个元素是负数会负负得正。。。
-        int maxPreSubSum = 0;
-
-        for (int num : nums) {
+        int maxPreSubSum = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            int num = nums[i];
             // 因为f(i)描述的是以nums[i]为结尾的子序列的最大值，nums[i]一定要参与进去。
             maxPreSubSum = Math.max(maxPreSubSum + num, num);
             maxSubSum = Math.max(maxPreSubSum, maxSubSum);
